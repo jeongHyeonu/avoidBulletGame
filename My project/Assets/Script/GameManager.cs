@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public List<Cannon> Cannon;
     [SerializeField] public GameObject GameStartUI;
     [SerializeField] public GameObject GameOverUI;
+    [SerializeField] public GameObject moveUI;
     [SerializeField] public TextMeshProUGUI score;
 
     public float cannonSpawnTime;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         GameStartUI.SetActive(true);
+
         instance = this;
     }
 
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
         GameStartUI.SetActive(false);
         Time.timeScale = 1f;
         score.gameObject.SetActive(true);
+        moveUI.SetActive(true);
         currentScore = 0;
         isGameStarted = true;
         cannonSpawnTime = 1f;
@@ -52,6 +55,7 @@ public class GameManager : MonoBehaviour
     {
         isGameStarted = false;
         GameOverUI.SetActive(true);
+        moveUI.SetActive(false);
     }
 
     // Start is called before the first frame update

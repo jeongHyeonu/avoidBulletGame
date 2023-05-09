@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     public bool isDied = false;
     private float rotateSpeed = 8f;
     private Vector3 dir;
+    private bool jumpBtnDown;
 
     private void Start()
     {
@@ -66,9 +67,9 @@ public class Player : MonoBehaviour
         }
 
         if (ani.GetFloat("jump") >= 0) ani.SetFloat("jump", ani.GetFloat("jump") - Time.deltaTime);
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || jumpBtnDown==true)
         {
-            if (ani.GetFloat("jump") < 0) ani.SetFloat("jump",.7f);
+            if (ani.GetFloat("jump") < 0) { ani.SetFloat("jump", .7f); jumpBtnDown = false; }
         }
 
         // 경기장 밖으로 떨어지면 게임오버
@@ -83,4 +84,8 @@ public class Player : MonoBehaviour
         joyStickY = y;
     }
 
+    public void PlayerJumpBtn()
+    {
+        jumpBtnDown = true;
+    }
 }
